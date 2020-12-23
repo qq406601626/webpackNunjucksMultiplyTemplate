@@ -1,5 +1,5 @@
 module.exports = {
-  imgdomain: 'https://res.dev.hixianchang.com',
+  imgdomain: 'https://',
   isPro: false,
   isDev: true,
 }
