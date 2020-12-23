@@ -3,6 +3,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const utils = require('./utils')
+const environmentConfig = require('../environmentConfig')
 const styleLoader = process.env.NODE_ENV === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader // 在启用dev-server时，mini-css-extract-plugin插件不能使用contenthash给文件命名 => 所以本地起dev-server服务调试时，使用style-loader
 module.exports = {
   entry: utils.entry,
@@ -12,12 +13,12 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
-    },
       {
         test: /\.(css|styl)$/,
         use: [
@@ -29,8 +30,7 @@ module.exports = {
       },
       {
         test: /\.(html|njk)$/,
-        use: [
-          {
+        use: [{
             loader: 'html-loader',
           },
           {
@@ -40,7 +40,9 @@ module.exports = {
                 path.join(__dirname, '../src/pages'),
               ],
               // filters: require('./filters'),
-              context: {hi: "there"},
+              context: {
+                environmentConfig
+              },
             }
           },
         ]
@@ -53,12 +55,10 @@ module.exports = {
   // alias: {},
   target: 'web',
   plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: path.resolve(__dirname, '../dist/static'),
-      },
-    ]),
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, '../static'),
+      to: path.resolve(__dirname, '../dist/static'),
+    }, ]),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash:7].css',
       chunkFilename: 'static/css/[name].[contenthash:7].css',

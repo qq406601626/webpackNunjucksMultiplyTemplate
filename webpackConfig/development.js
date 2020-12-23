@@ -16,7 +16,7 @@ const developmentConfig = {
     openPage: 'index.html', // 指定默认启动浏览器时打开的页面
     index: '/', // 指定首页位置
     host: 'localhost', // 默认localhost,想外部可访问用'0.0.0.0'
-    port: 8080, // 默认8080
+    port: 8081, // 默认8080
     inline: true, // 可以监控js变化
     hot: true, // 热启动
     open: true, // 启动时自动打开浏览器（指定打开chrome，open: 'Google Chrome'）

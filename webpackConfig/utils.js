@@ -1,6 +1,7 @@
 const glob = require('glob')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 let entry, templates, developmentPlugins, productionPlugins
 // 1、扫描src目录下所有文件夹，如果文件夹中包含html，则检查是否有同名的js文件，如果有，则打包该js文件
 // 2、把js文件引入到html中
@@ -38,6 +39,7 @@ const getDevelopmentHtmlWebpackPlugins = () => {
 }
 const getProductionHtmlWebpackPlugins = () => {
   let htmlWebpackPlugins = []
+  htmlWebpackPlugins.push(new CleanWebpackPlugin())
   let setting = null
   for (let name in templates) {
     setting = {
