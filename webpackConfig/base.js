@@ -1,4 +1,3 @@
-const p = console.log
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -34,7 +33,6 @@ module.exports = {
             loader: 'html-loader',
           },
           {
-            // loader: 'nunjucks-html-loader',
             loader: path.resolve(__dirname, '../src/libs/nunjucks-html-loader.js'),
             options: {
               searchPaths: [
