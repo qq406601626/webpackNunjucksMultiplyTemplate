@@ -34,7 +34,8 @@ module.exports = {
             loader: 'html-loader',
           },
           {
-            loader: 'nunjucks-html-loader',
+            // loader: 'nunjucks-html-loader',
+            loader: path.resolve(__dirname, '../src/libs/nunjucks-html-loader.js'),
             options: {
               searchPaths: [
                 path.join(__dirname, '../src/pages'),
@@ -43,6 +44,7 @@ module.exports = {
               context: {
                 environmentConfig
               },
+              contextFileName:'context'
             }
           },
         ]
