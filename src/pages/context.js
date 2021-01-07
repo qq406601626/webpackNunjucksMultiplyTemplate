@@ -1,3 +1,3 @@
 module.exports = {
-  aaaaaaaaaaaaaaaa: 'ddddddddd'
+  arr:['111','222','333']
 }
